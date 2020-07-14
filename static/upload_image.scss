@@ -1,0 +1,21 @@
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.input-form {
+    margin-bottom: 5%;
+}
+
+.input-button {
+    margin-bottom: 5%;
+}
+
+.upload-image {
+    max-width: 30vw;
+    height: auto;
+    align-self: center;
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<head>
+    <title>Poetify your pictures!</title>
+    <link rel = "stylesheet" href="{{ url_for('static', filename='upload_image.css') }}" >
+</head>
+
+<body>
+    <div class="grid-container">
+        <h1>Upload your image here:</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div>
+                <input type="file" name="image" id="image" class="input-form">
+            </div>
+            <button type="submit" class="input-button">Upload</button>
+        </form>
+        {% if filename %}
+        <img src="{{ url_for('display_image', filename = filename, imagelabel=image_label) }}" class="upload-image"> 
+        {% endif %}
+
+        {% if imagelabel %}
+        <h1 src="">{{imagelabel}}</h1>
+        {% endif %}
+    </div>
+</body>

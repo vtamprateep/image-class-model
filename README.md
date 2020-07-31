@@ -51,3 +51,50 @@ I also provided packages so that users can unpack their own datasets and train t
 
 After training, the model will be saved to the model folder, overwriting any existing model or related image classification labels pre-saved there. IMPORTANT: The Flask `app.py` file points to the model folder to load the saved model and related labels - if you change the name of directory structure, the Flask app will not work.
 
+## How It Works
+
+**Directory Structure:**
+
+```
+image-class
+|
++-- data (Where processed data is moved to)
+|   +-- data_labels.csv
+|   +-- images
+|       +-- [all images]
+|
++-- model
+|   +-- label.txt
+|   +-- model.h5
+|
++-- raw (This is where I kept my data - you do not have to do the same)
+|
++-- static
+|   +-- upload_image.css
+|   +-- upload_image.scss
+|   +-- images (Images uploaded to Python Flask app saved here)
+|
++-- templates
+|   +-- upload_image.html
+|
++-- requirements.txt
++-- README.md
++-- app.py
++-- data_generator.py
++-- nn_model.py
++-- process_data.py
++-- process_data.py
++-- train_model.py
+```
+
+### The Neural Network Model
+
+The model framework resides in the `nn_model.py` file. The model is built on the TensorFlow/Keras API and is simple, containing no more than 15 hidden layers. The methods of the class mirror the methods inherent to TensorFlow Sequential type models.
+
+### Data Generator
+
+The data generator file `data_generator.py` is used to generate data in mini-batches for training. This allows for users to train their data on very large datasets that cannot be held in memory at one single time (16+ GB or however much memory your computer has). The generator by default looks for processed data within the data folder and shuffles the training set after every epoch.
+
+### Train Model
+
+The `train_model.py` file is an executable that imports the .csv file containing all image names and their related labels. The module automatically splits the dataset into training and validation generators and feeds them into the neural network model. Parameters `gparams` is defined in the file and defines what dimensions the input image array should be in, what size of each batch should be, and the number of classes identified by the dataset. Currently, the neural network model is programmed to take input dimensions of `(28, 28, 3)` so this parameter cannot be changed or else it will throw an error.

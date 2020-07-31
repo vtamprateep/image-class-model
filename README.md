@@ -63,6 +63,9 @@ image-class
 |   +-- images
 |       +-- [all images]
 |
++-- img
+|   +-- (Screenshot for markdown example)
+|
 +-- model
 |   +-- label.txt
 |   +-- model.h5

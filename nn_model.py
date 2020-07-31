@@ -31,7 +31,7 @@ class ImageClassModel:
         if y_train:
             self.model.fit(x = X_train, y = y_train, epochs = epochs, validation_data = validation_data)
         else:
-            self.model.fit(x = X_train, epochs = epochs)
+            self.model.fit(x = X_train, validation_data = validation_data, epochs = epochs)
 
     def evaluate(self):
         # TODO: Create evaluation method
@@ -42,7 +42,7 @@ class ImageClassModel:
         return self.inference_array[self.class_index[0]]
 
     def save_model(self, path):
-        model_path = os.path.join(path, 'test_model.h5')
-        label_path = os.path.join(path, 'test_label.txt')
+        model_path = os.path.join(path, 'model.h5')
+        label_path = os.path.join(path, 'label.txt')
         self.model.save(model_path)
         numpy.savetxt(label_path, self.inference_array, fmt = '%s')

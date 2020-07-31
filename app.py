@@ -49,12 +49,10 @@ def process_image(path):
 
 # Load model and make prediction
 def model_predict(image_array):
-    labels = ['Building','Forest','Glacier','Mountain','Sea','Street']
-    model = keras.models.load_model('./model/test_model.h5')
-    model.load_weights('./model/checkpoint/model_checkpoint')
+    labels = numpy.genfromtxt('./model/label.txt', dtype = str)
+    model = keras.models.load_model('./model/model.h5')
     prediction = numpy.argmax(model.predict(image_array), axis = 1)
-
-    return labels[prediction[0]]
+    return labels[prediction[0]].capitalize()
 
 # Render upload file page
 @app.route('/', methods=['GET', 'POST'])

@@ -40,5 +40,4 @@ class ImageGenerator(keras.utils.Sequence):
             y[enum,] = self.image_label[index]
 
         X = X / 255 # Normalize values
-
         return X, keras.utils.to_categorical(y, num_classes = self.n_classes)

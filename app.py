@@ -41,7 +41,8 @@ def check_file(filename):
 # Convert image to numpy array
 def process_image(path):
     inputArray = []
-    imageLoad = keras.preprocessing.image.load_img(path, target_size=(28, 28, 3))
+    imageLoad = keras.preprocessing.image.load_img(path, target_size = (160, 160, 3)) # Change dim to (28, 28, 3) if using package trained model
+    print(imageLoad)
     imageLoad = keras.preprocessing.image.img_to_array(imageLoad)
     imageNorm = imageLoad/255
     inputArray.append(imageNorm)
@@ -50,7 +51,7 @@ def process_image(path):
 # Load model and make prediction
 def model_predict(image_array):
     labels = numpy.genfromtxt('./model/label.txt', dtype = str)
-    model = keras.models.load_model('./model/model.h5')
+    model = keras.models.load_model('./model/transfer_model_tune.h5') # Change path to model you want to use
     prediction = numpy.argmax(model.predict(image_array), axis = 1)
     return labels[prediction[0]].capitalize()
 

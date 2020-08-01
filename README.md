@@ -3,6 +3,8 @@
 
 This is a TensorFlow based Image Classification Neural Network that is hosted on Flask, allowing users to boot up a local web application and upload their own photos and see how well their model performs on training data. The repository contains modules allowing users to unroll a variable amount of data and related classes and train their own neural network on a custom set of data.
 
+![](img/example_pic.png)
+
 ## Notable Features
 
 - TensorFlow class implementation of neural network model

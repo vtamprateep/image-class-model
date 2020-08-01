@@ -10,6 +10,9 @@ This is a TensorFlow based Image Classification Neural Network that is hosted on
 - TensorFlow class implementation of neural network model
 - Trained via data generators to allow usage of significantly large datasets (cannot be fit in memory all at once)
 - Flask Web App interface for users to upload their own photos and get an image classification prediction based on the labels the model was trained on
+- Transfer learning using pre-trained MobileNetV2 model. Two models are provided
+    - `transfer_model.h5`, model trained by attaching last layer corresponding to the classes and freezing all layers of the pre-trained model
+    - `transfer_model_tune.h5`, model trained by freezing the first 100 layers (60%) and training the unfrozen layers
 
 ## Requirements & Versioning
 
@@ -71,6 +74,11 @@ image-class
 +-- model
 |   +-- label.txt
 |   +-- model.h5
+|   +-- transfer_model.h5
+|   +-- transfer_model_tune.h5
+|
++-- package
+|   +-- 
 |
 +-- raw (This is where I kept my data - you do not have to do the same)
 |
@@ -85,9 +93,6 @@ image-class
 +-- requirements.txt
 +-- README.md
 +-- app.py
-+-- data_generator.py
-+-- nn_model.py
-+-- process_data.py
 +-- process_data.py
 +-- train_model.py
 ```

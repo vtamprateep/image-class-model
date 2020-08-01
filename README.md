@@ -62,6 +62,32 @@ After training, the model will be saved to the model folder, overwriting any exi
     - Line 44, the input dimensions of the transfer learning models are (160, 160, 3). If you train using the prepared packages in the repo, you should change this to (28, 28, 3)
     - Line 54, the path points to `transfer_model_tune.h5`. If you train using the prepared packages in the repo, you should change this to `'./model/model.h5'`
 
+(NOTE: To unroll your raw data, the data must be organized in separate files that are named by the labels you are looking to classify. See below for an example)
+
+**EXAMPLE RAW DATA DIRECTORY STRUCTURE**
+
+```
+raw data
+|
++-- buildings
+|   +-- [images]
+|
++-- forest
+|   +-- [images]
+|
++-- glacier
+|   +-- [images]
+|
++-- mountain
+|   +-- [images]
+|
++-- sea
+|   +-- [images]
+|
++-- street
+|   +-- [images]
+```
+
 ## How It Works
 
 **Directory Structure:**
@@ -78,13 +104,15 @@ image-class
 |   +-- (Screenshot for markdown example)
 |
 +-- model
-|   +-- label.txt
-|   +-- model.h5
+|   +-- label.txt (This file will be overwritten depending on the image labels you are classifying)
+|   +-- model.h5 (Trained models using the python files will overwrite this file)
 |   +-- transfer_model.h5
-|   +-- transfer_model_tune.h5
+|   +-- transfer_model_tune.h5 (Default model that the Flask app.py points to)
 |
 +-- package
-|   +-- 
+|   +-- __init__.py
+|   +-- data_generator.py
+|   +-- nn_model.py
 |
 +-- raw (This is where I kept my data - you do not have to do the same)
 |

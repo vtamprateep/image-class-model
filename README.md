@@ -13,6 +13,8 @@ This is a TensorFlow based Image Classification Neural Network that is hosted on
 - Transfer learning using pre-trained MobileNetV2 model. Two models are provided
     - `transfer_model.h5`, model trained by attaching last layer corresponding to the classes and freezing all layers of the pre-trained model
     - `transfer_model_tune.h5`, model trained by freezing the first 100 layers (60%) and training the unfrozen layers
+    
+(COMMENT: The difference in `transfer_model.h5` and `transfer_model_tune.h5` is that `transfer_model_tune.h5` has higher level of tuning, training more layers of the pre-trained model)
 
 ## Requirements & Versioning
 
@@ -55,6 +57,10 @@ I also provided packages so that users can unpack their own datasets and train t
 3. Run the command to train the model `python train_model.py`
 
 After training, the model will be saved to the model folder, overwriting any existing model or related image classification labels pre-saved there. IMPORTANT: The Flask `app.py` file points to the model folder to load the saved model and related labels - if you change the name of directory structure, the Flask app will not work.
+
+4. The Flask App defaults to using the model `transfer_model_tune.h5`, so if you want to implement your own personal model, you must edit the `app.py` Lines 44 and 54 to point to the appropriate model and edit the input dimensions:
+    - Line 44, the input dimensions of the transfer learning models are (160, 160, 3). If you train using the prepared packages in the repo, you should change this to (28, 28, 3)
+    - Line 54, the path points to `transfer_model_tune.h5`. If you train using the prepared packages in the repo, you should change this to `'./model/model.h5'`
 
 ## How It Works
 

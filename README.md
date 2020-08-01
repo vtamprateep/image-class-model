@@ -35,7 +35,7 @@ I have provided a pretrained model within the model folder that is pretrained on
 
 2. Install relevant packages:
   ```
-  pip install
+  pip install -r requirements.txt
   ```
   
 3. `cd` to the directory containing `app.py` (This is the core file that runs the Flask web app)
